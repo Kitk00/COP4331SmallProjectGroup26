@@ -1,4 +1,4 @@
-const urlBase = 'http://159.89.159.198/LAMPAPI';
+const urlBase = 'http://134.209.2.58/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -58,6 +58,59 @@ function doLogin()
 
 }
 
+function doSignUp()
+{
+	userId = 0;
+	
+	let firstName = document.getElementById("signUpFirstName").value;
+	let lastName = document.getElementById("signUpLastName").value;
+	let login = document.getElementById("signUpName").value;
+	let password = document.getElementById("signUpPassword").value;
+//	var hash = md5( password );
+	
+	document.getElementById("signUpResult").innerHTML = "";
+
+	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
+//	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/SignUp.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{		
+					document.getElementById("signUpResult").innerHTML = "Username Not Available";
+					return;
+				}
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				window.location.href = "color.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("signUpResult").innerHTML = err.message;
+	}
+
+}
+
 function saveCookie()
 {
 	let minutes = 20;
@@ -113,7 +166,7 @@ function addColor()
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {color:newColor,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddColor.' + extension;
