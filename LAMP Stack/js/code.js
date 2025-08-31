@@ -70,6 +70,12 @@ function doSignUp()
 	
 	document.getElementById("signUpResult").innerHTML = "";
 
+	if(!firstName || !lastName || !login || !password)
+	{
+		document.getElementById("signUpResult").innerHTML = "All fields required";
+		return;
+	}
+	
 	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
