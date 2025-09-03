@@ -1,6 +1,10 @@
 
 <?php
-
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	
+	
 	$inData = getRequestInfo();
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
@@ -21,25 +25,32 @@
 		}
 		else
 		{
-            $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, Login, Password) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
 
-            if( $stmt->execute()  )
+			if( $inData["firstName"] != "" && $inData["lastName"] != "")
 		    {
-                $userId = $conn->insert_id;
-                if( $userId > 0)
-                {
-                    returnWithInfo( $inData["firstName"], $inData["lastName"], $userId );
-                }
+                if ( $stmt->execute() )
+				{
+					$userId = $conn->insert_id;
+                	if( $userId > 0)
+					{
+						returnWithInfo( $inData["firstName"], $inData["lastName"], $userId );
+					}
+					else
+					{
+						returnWithError("Could Not Find ID");
+					}
+				}
                 else
                 {
-                    returnWithError("Could Not Find ID");
+                    returnWithError("Could Not Create Account");
                 }
                 
 		    }
 		    else
 		    {
-			    returnWithError("Could Not Create Account");
+			    returnWithError("First/Last Name Cannot Be NULL");
 		    }
 
             $stmt->close();
