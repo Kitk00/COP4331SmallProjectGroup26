@@ -1,9 +1,18 @@
 <?php
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
 	$searchCount = 0;
+
+	if ($inData == null) 
+	{
+		returnWithError("Input Data cannot be NULL (likely userId missing)");
+		return;
+	}
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -12,9 +21,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Contacts where FirstName like ? and UserID=?");
-		$firstName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $firstName, $inData["userId"]);
+		$stmt = $conn->prepare("select FirstName, LastName from Contacts where (FirstName like ? or LastName like ?) and UserID=?");
+		$search = "%" . $inData["search"] . "%";
+		$stmt->bind_param("sss", $search, $search, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +35,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . " " . $row["LastName"] . '"';
 		}
 		
 		if( $searchCount == 0 )

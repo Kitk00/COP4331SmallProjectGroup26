@@ -1,4 +1,5 @@
-const urlBase = 'http://134.209.2.58/LAMPAPI';
+// const urlBase = 'http://134.209.2.58/LAMPAPI';
+const urlBase = 'http://159.89.159.198/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -182,7 +183,7 @@ function addContact()
 
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -197,6 +198,11 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+
+				document.getElementById("firstName").value = "";
+				document.getElementById("lastName").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("email").value = "";
 			}
 		};
 		xhr.send(jsonPayload);
