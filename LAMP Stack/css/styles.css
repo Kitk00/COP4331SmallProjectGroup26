@@ -1,6 +1,7 @@
 body 
 {
     background-color: #0012ff;
+	background-image: url('../images/background.png');
 }
 
 #title 
