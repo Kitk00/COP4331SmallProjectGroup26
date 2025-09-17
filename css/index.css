@@ -6,19 +6,6 @@ body
     background-size: 100%;
 }
 
-p
-{
-    font-size: 25px;
-    color:#008040;
-    margin-left: 10%;
-}
-
-a
-{
-    color:#0000e0;
-    font-size: 22px;
-}
-
 #title 
 {
     font-size: 40px;
@@ -109,9 +96,9 @@ input[type="text"],input[type="password"]{
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    border: 2px solid #00B5E2; /* Your green color for focus */
+    border: 2px solid #00B5E2; 
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 181, 226, 0.3); /* Subtle blue glow */
+    box-shadow: 0 0 5px rgba(0, 181, 226, 0.3); 
 }
 
 #inner-title{

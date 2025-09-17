@@ -82,7 +82,26 @@ a
 
 #signUpFirstName
 {
-    font-size: 25px;
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+#signUpLastName
+{
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+#signUpName
+{
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+#signUpPassword
+{
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
 }
 
 #loginName
