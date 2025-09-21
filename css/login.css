@@ -17,7 +17,7 @@ body
     color: #008040;
 }
 
-#signUpDiv
+#loginDiv
 {
     font-size: 30px;
     width: 30%;
@@ -27,6 +27,24 @@ body
     background-color: #FFFFFF80;
 }
 
+#loggedInDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
+}
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
+}
+
 .buttons
 {
     font-size: 25px;
@@ -34,7 +52,7 @@ body
     width: 80%;
     margin-left: 10%;
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 5px;
     font-family: 'Helvetica', sans-serif;
     background-color: #00804080;
@@ -47,30 +65,20 @@ body
     transform: scale(1.05);
 }
 
-#signUpFirstName
+#loginName
 {
-    font-size: 20px;
+	font-size: 20px;
     font-family: 'Helvetica', sans-serif;
 }
-
-#signUpLastName
+#loginPassword
 {
-    font-size: 20px;
+	font-size: 20px;
     font-family: 'Helvetica', sans-serif;
 }
-
-#signUpName
+#searchText
 {
-    font-size: 20px;
-    font-family: 'Helvetica', sans-serif;
+	font-size: 30px;
 }
-
-#signUpPassword
-{
-    font-size: 20px;
-    font-family: 'Helvetica', sans-serif;
-}
-
 #colorText
 {
 	font-size: 30px;
@@ -90,7 +98,7 @@ input[type="text"],input[type="password"]{
 input[type="text"]:focus, input[type="password"]:focus {
     border: 2px solid #00B5E2; 
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 181, 226, 0.3);
+    box-shadow: 0 0 5px rgba(0, 181, 226, 0.3); 
 }
 
 #inner-title{
@@ -101,6 +109,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Helvetica', sans-serif;
+    font-size: 40px;
     color: #008040;
 }
 
@@ -122,10 +131,31 @@ input[type="text"]:focus, input[type="password"]:focus {
     text-align: center;
 }
 
+#logoutButton{
+    width: 20%;
+    margin-left: 40%;
+}
+
 select{
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
     font-family: 'Helvetica', sans-serif;
+}
+
+#colorSearchResult{
+    display: none;
+}
+
+#colorAddResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Helvetica', sans-serif;
+    color: #95060a;
 }
