@@ -13,18 +13,64 @@ body
     margin-top: 2%;
     margin-right: 10%;
     text-align: center;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #008040;
+}
+
+.sidenav
+{
+    height: 100vh;
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00804090;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tables
+{
+    align-self: center;
+}
+
+#contactTable
+{
+    display: block;
+    height: 500px;
+}
+
+table
+{
+    width:100%;
+    table-layout: fixed;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tbl-content 
+{
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid #008040;
+}
+
+#contacts td, #contacts th 
+{
+    border: 1px solid #008040;
 }
 
 #loginDiv
 {
     font-size: 30px;
     width: 30%;
-    height: 57%;
+    height: 50%;
     margin-left: 30%;
     padding: 50px;
-    background-color: #FFFFFF80;
+    background-color: #00B5E2;
 }
 
 #loggedInDiv
@@ -40,9 +86,9 @@ body
 {
     font-size: 30px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 17.5%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #00B5E280;
 }
 
 .buttons
@@ -67,13 +113,11 @@ body
 
 #loginName
 {
-	font-size: 20px;
-    font-family: 'Helvetica', sans-serif;
+	font-size: 30px;
 }
 #loginPassword
 {
-	font-size: 20px;
-    font-family: 'Helvetica', sans-serif;
+	font-size: 30px;
 }
 #searchText
 {
@@ -85,20 +129,12 @@ body
 }
 
 input[type="text"],input[type="password"]{
-    border-radius: 15px;
+    border-radius: 25px;
     text-align: center;
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    padding: 10px;
-    font-family: 'Helvetica', sans-serif;
-    border: 2px solid #00B5E2;
-}
-
-input[type="text"]:focus, input[type="password"]:focus {
-    border: 2px solid #00B5E2; 
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 181, 226, 0.3); 
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #inner-title{
@@ -108,9 +144,8 @@ input[type="text"]:focus, input[type="password"]:focus {
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Helvetica', sans-serif;
-    font-size: 25px;
-    color: #008040;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
 }
 
 #loginResult{
@@ -120,7 +155,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
 
@@ -132,8 +167,9 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 #logoutButton{
-    width: 20%;
-    margin-left: 40%;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 130%;
 }
 
 select{
@@ -141,7 +177,7 @@ select{
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #colorSearchResult{
@@ -156,6 +192,6 @@ select{
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }

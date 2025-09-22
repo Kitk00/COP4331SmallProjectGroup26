@@ -21,14 +21,13 @@ body
 {
     font-size: 40px;
     border-radius: 15px;
-    width: 80%;
-    margin-left: 10%;
+    width: 30%;
+    margin-left: 35%;
     margin-top: 10%;
     margin-bottom: 10px;
     padding: 5px;
     font-family: 'Helvetica', sans-serif;
-    color: #008040;
-    background: none;
+    background-color: #00804080;
     border: none;
     cursor: pointer;
 }
