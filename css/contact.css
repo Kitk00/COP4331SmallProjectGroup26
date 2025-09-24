@@ -17,6 +17,52 @@ body
     color: #008040;
 }
 
+.sidenav
+{
+    height: 100vh;
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00804090;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tables
+{
+    align-self: center;
+}
+
+#contactTable
+{
+    display: block;
+    height: 500px;
+}
+
+table
+{
+    width:100%;
+    table-layout: fixed;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tbl-content 
+{
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid #008040;
+}
+
+#contacts td, #contacts th 
+{
+    border: 1px solid #008040;
+}
+
 #loginDiv
 {
     font-size: 30px;
@@ -24,7 +70,7 @@ body
     height: 50%;
     margin-left: 30%;
     padding: 50px;
-    background-color: #FFFFFF80;
+    background-color: #00B5E2;
 }
 
 #loggedInDiv
@@ -40,24 +86,29 @@ body
 {
     font-size: 30px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 17.5%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #00B5E280;
 }
 
 .buttons
 {
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
+    font-size: 25px;
+    border-radius: 15px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-family: 'Helvetica', sans-serif;
+    background-color: #00804080;
+    border: none;
 }
 
 .buttons:hover{
     background-color: #00d5124f;
     color: #FFFFFF;
-    opacity: 50%;
+    transform: scale(1.05);
 }
 
 #loginName
@@ -116,8 +167,9 @@ input[type="text"],input[type="password"]{
 }
 
 #logoutButton{
-    width: 20%;
-    margin-left: 40%;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 130%;
 }
 
 select{
@@ -144,36 +196,44 @@ select{
     color: #95060a;
 }
 
-.contactButton {
-	font-size: 30px;
-    border-radius: 25px;
-    width: 25%;
-    margin-left: 25%;
+#contacts .contactButton {
+    font-size: 16px;
+    border-radius: 8px;
+    width: 65px;
+    margin: 2px;
+    padding: 4px 2px;
     font-family: 'Ubuntu', sans-serif;
+    background-color: #00804080;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
-.contactButton:hover {
+#contacts .contactButton:hover {
     background-color: #00d5124f;
     color: #FFFFFF;
-    opacity: 50%;
+    transform: scale(1.05);
 }
 
-#contactResults {
-	margin: 10px 0;
+#contacts .tableCells {
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
 }
 
-#contact {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-bottom: 5px;
-	background-color: #f9f9f9;
+#contacts .tableHeader {
+    padding: 8px;
+    text-align: left;
+    background-color: #008040;
+    color: white;
+    font-weight: bold;
 }
 
-#contactData {
-	flex-grow: 1;
-	margin-right: 10px;
+#contacts .buttonCells {
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
 }
