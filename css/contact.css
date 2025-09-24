@@ -195,3 +195,45 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
+
+#contacts .contactButton {
+    font-size: 16px;
+    border-radius: 8px;
+    width: 65px;
+    margin: 2px;
+    padding: 4px 2px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #00804080;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#contacts .contactButton:hover {
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+#contacts .tableCells {
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#contacts .tableHeader {
+    padding: 8px;
+    text-align: left;
+    background-color: #008040;
+    color: white;
+    font-weight: bold;
+}
+
+#contacts .buttonCells {
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
+}

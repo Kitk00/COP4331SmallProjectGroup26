@@ -255,7 +255,8 @@ function searchContact()
 	let srch = document.getElementById("searchText").value;
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
-	let contactList = "";
+	let tableBody = document.getElementById("tbody");
+	tableBody.innerHTML= "";
 
 	let tmp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
@@ -274,22 +275,48 @@ function searchContact()
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				contactList += "<div class='contactResults'>";
-				
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
 					let contact = jsonObject.results[i];
-					contactList += "<div class='contact'>";
-					contactList += "<span class='contactData'>" + contact.FirstName + " " + contact.LastName + " - " + contact.Phone + " - " + contact.Email + "</span>";
-					contactList += "<button type='button' class='contactButton' onclick='selectContact(\"" + 
-						contact.FirstName + "\", \"" + contact.LastName + "\", \"" + contact.Phone + "\", \"" + contact.Email + "\", " + contact.ID + ")'>Edit</button>";
-					contactList += "<button type='button' class='contactButton' onclick='deleteContact(\"" + contact.ID + "\")'>Delete</button>";
-					contactList += "</div>";
-					if( i < jsonObject.results.length - 1 )
+					let row = tableBody.insertRow();
+
+					let firstNameCell = row.insertCell(0);
+					let lastNameCell = row.insertCell(1);
+					let emailCell = row.insertCell(2);
+					let phoneCell = row.insertCell(3);
+					let buttonsCell = row.insertCell(4);
+					
+					firstNameCell.className = "tableCells";
+   					lastNameCell.className = "tableCells";
+   					emailCell.className = "tableCells";
+   					phoneCell.className = "tableCells";
+					buttonsCell.className = "tableCells buttonCells"
+
+					firstNameCell.textContent = contact.FirstName;
+   					lastNameCell.textContent = contact.LastName;
+   					emailCell.textContent = contact.Email;
+   					phoneCell.textContent = contact.Phone;
+
+					let editButton = document.createElement("button");
+					editButton.type = "button";
+					editButton.className = "contactButton";
+					editButton.textContent = "Edit";
+					editButton.onclick = function() 
 					{
-						contactList += "<br />";
-					}
-					document.getElementsByTagName("p")[0].innerHTML = contactList;
+						selectContact(contact.FirstName, contact.LastName, contact.Phone, contact.Email, contact.ID);
+					};
+
+					let deleteButton = document.createElement("button");
+					deleteButton.type = "button";
+					deleteButton.className = "contactButton";
+					deleteButton.textContent = "Delete";
+					deleteButton.onclick = function() 
+					{
+						deleteContact(contact.ID);
+					};
+
+					buttonsCell.appendChild(editButton);
+					buttonsCell.appendChild(deleteButton);
 				}
 			}
 		};
