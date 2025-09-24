@@ -1,6 +1,7 @@
-const urlBase = 'http://159.89.159.198/LAMPAPI';
+//const urlBase = 'http://159.89.159.198/LAMPAPI';
 //const urlBase = 'http://134.209.2.58/LAMPAPI';
 // const urlBase = 'http://165.227.218.156/LAMPAPI';
+const urlBase = 'http://104.248.77.74/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -68,17 +69,24 @@ function doSignUp()
 	let lastName = document.getElementById("signUpLastName").value;
 	let login = document.getElementById("signUpName").value;
 	let password = document.getElementById("signUpPassword").value;
+	let confirmPassword = document.getElementById("signUpConfirmPassword").value;
+	
 //	var hash = md5( password );
 	
 	document.getElementById("signUpResult").innerHTML = "";
 
-	if(!firstName || !lastName || !login || !password)
+	if(!firstName || !lastName || !login || !password || !confirmPassword)
 	{
 		document.getElementById("signUpResult").innerHTML = "All fields required";
 		return;
 	}
+
+	if(password !== confirmPassword) {
+		document.getElementById("signUpResult").innerHTML = "Passwords do not match";
+		return;
+	}
 	
-	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
+	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password,confirmPassword:confirmPassword};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -274,6 +282,8 @@ function searchContact()
 			{
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
+
+				setTimeout(function() {document.getElementById("contactSearchResult").innerHTML = "";}, 3000);
 				
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
