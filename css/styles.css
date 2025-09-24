@@ -143,37 +143,3 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
-
-.contactButton {
-	font-size: 30px;
-    border-radius: 25px;
-    width: 25%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.contactButton:hover {
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 50%;
-}
-
-#contactResults {
-	margin: 10px 0;
-}
-
-#contact {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-bottom: 5px;
-	background-color: #f9f9f9;
-}
-
-#contactData {
-	flex-grow: 1;
-	margin-right: 10px;
-}
