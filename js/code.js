@@ -69,8 +69,7 @@ function doSignUp()
 	let lastName = document.getElementById("signUpLastName").value;
 	let login = document.getElementById("signUpName").value;
 	let password = document.getElementById("signUpPassword").value;
-	let confirmPassword = document.getElementById("signUpConfirmPassword").value;
-	
+	let confirmPassword = document.getElementById("confirmPassword").value;
 //	var hash = md5( password );
 	
 	document.getElementById("signUpResult").innerHTML = "";
