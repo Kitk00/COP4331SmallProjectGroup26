@@ -8,6 +8,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 let isInitialLoad = true;
+let suppressSearchResultMessage = false;
 
 function doLogin()
 {
@@ -231,8 +232,14 @@ function addContact()
 	if(!firstName || !lastName || !phone || !email)
 	{
 		document.getElementById("contactAddResult").innerHTML = "All fields required";
+		const resultElem = document.getElementById("contactAddResult");
+		resultElem.classList.remove("fade-out");
 		setTimeout(function() {
-			document.getElementById("contactAddResult").innerHTML = "";
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
 		}, 3000);
 		return;
 	}
@@ -254,8 +261,14 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				const resultElem = document.getElementById("contactAddResult");
+				resultElem.classList.remove("fade-out");
 				setTimeout(function() {
-					document.getElementById("contactAddResult").innerHTML = "";
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
 				}, 3000);
 
 				document.getElementById("firstName").value = "";
@@ -328,12 +341,19 @@ function searchContact()
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				if(!isInitialLoad) {
+				if(!isInitialLoad && !suppressSearchResultMessage) {
 					document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+					const resultElem = document.getElementById("contactSearchResult");
+					resultElem.classList.remove("fade-out");
 					setTimeout(function() {
-						document.getElementById("contactSearchResult").innerHTML = "";
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
 					}, 3000);
 				}
+				suppressSearchResultMessage = false;
 				isInitialLoad = false;
 
 				for( let i=0; i<jsonObject.results.length; i++ )
@@ -449,8 +469,14 @@ function editContact()
 	if(!firstName || !lastName || !phone || !email)
 	{
 		document.getElementById("contactEditResult").innerHTML = "One field required";
+		const resultElem = document.getElementById("contactEditResult");
+		resultElem.classList.remove("fade-out");
 		setTimeout(function() {
-			document.getElementById("contactSearchResult").innerHTML = "";
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
 		}, 3000);
 		return;
 	}
@@ -477,8 +503,14 @@ function editContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactEditResult").innerHTML = "Contact has been updated";
+				const resultElem = document.getElementById("contactEditResult");
+				resultElem.classList.remove("fade-out");
 				setTimeout(function() {
-					document.getElementById("contactSearchResult").innerHTML = "";
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
 				}, 3000);
 
 				document.getElementById("firstName").value = "";
@@ -486,6 +518,8 @@ function editContact()
 				document.getElementById("phone").value = "";
 				document.getElementById("email").value = "";
 				window.currentContactId = null;
+				document.getElementById("addContactModal").style.display = "none";
+				suppressSearchResultMessage = true;
 				searchContact();
 			}
 		};
@@ -500,16 +534,25 @@ function editContact()
 
 function selectContact(firstName, lastName, phone, email, contactId)
 {
-	document.getElementById("contactEditResult").innerHTML = "";
-	document.getElementById("contactDeleteResult").innerHTML = "";
-	document.getElementById("contactAddResult").innerHTML = "";
-	
-	document.getElementById("firstName").value = firstName;
-	document.getElementById("lastName").value = lastName;
-	document.getElementById("phone").value = phone;
-	document.getElementById("email").value = email;	
+    // Show the modal
+    document.getElementById("addContactModal").style.display = "block";
 
-	window.currentContactId = contactId;
+    // Pre-fill the fields
+    document.getElementById("firstName").value = firstName;
+    document.getElementById("lastName").value = lastName;
+    document.getElementById("phone").value = phone;
+    document.getElementById("email").value = email;
+
+    // Optionally, change modal title and button text for editing
+    document.querySelector("#addContactModal h2").textContent = "Edit Contact";
+    document.getElementById("addContactButton").textContent = "Save Changes";
+
+	window.currentContactId = contactId; // Store for editing
+
+    // Store contactId for editing (you may need to handle this in your editContact logic)
+    document.getElementById("addContactButton").onclick = function() {
+        editContact(contactId);
+    };
 }
 
 function deleteContact(contactId)
@@ -542,11 +585,18 @@ function deleteContact(contactId)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+				const resultElem = document.getElementById("contactDeleteResult");
+				resultElem.classList.remove("fade-out");
 				setTimeout(function() {
-					document.getElementById("contactDeleteResult").innerHTML = "";
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
 				}, 3000);
 
 				window.currentContactId = null;
+				suppressSearchResultMessage = true;
 				searchContact();
 			}
 		};
