@@ -30,9 +30,30 @@ body
     flex-direction: column;
 }
 
-.tables
-{
+.tables {
     align-self: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-btn {
+    align-self: flex-end; /* This will push the button to the right */
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: #008040;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 10px 0;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    transform: scale(1.05);
 }
 
 #contactTable
@@ -246,11 +267,96 @@ select{
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Helvetica', sans-serif;
-    color: #95060a;
+    color: #000000;
     opacity: 1;
     transition: opacity 0.5s ease-out;
 }
 
 #contactSearchResult.fade-out {
     opacity: 0;
+}
+
+#contactAddResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactAddResult.fade-out {
+    opacity: 0;
+}
+
+#contactDeleteResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactDeleteResult.fade-out {
+    opacity: 0;
+}
+
+#contactEditResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactEditResult.fade-out {
+    opacity: 0;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 2px solid #008040;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.close {
+    color: #008040;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover {
+    color: #95060a;
 }

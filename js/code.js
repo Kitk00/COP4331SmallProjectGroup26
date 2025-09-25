@@ -7,6 +7,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let isInitialLoad = true;
 
 function doLogin()
 {
@@ -230,6 +231,9 @@ function addContact()
 	if(!firstName || !lastName || !phone || !email)
 	{
 		document.getElementById("contactAddResult").innerHTML = "All fields required";
+		setTimeout(function() {
+			document.getElementById("contactAddResult").innerHTML = "";
+		}, 3000);
 		return;
 	}
 
@@ -250,6 +254,9 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				setTimeout(function() {
+					document.getElementById("contactAddResult").innerHTML = "";
+				}, 3000);
 
 				document.getElementById("firstName").value = "";
 				document.getElementById("lastName").value = "";
@@ -319,11 +326,16 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
-
-				setTimeout(function() {document.getElementById("contactSearchResult").innerHTML = "";}, 3000);
 				
+				if(!isInitialLoad) {
+					document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+					setTimeout(function() {
+						document.getElementById("contactSearchResult").innerHTML = "";
+					}, 3000);
+				}
+				isInitialLoad = false;
+
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
 					let contact = jsonObject.results[i];
@@ -436,7 +448,10 @@ function editContact()
 
 	if(!firstName || !lastName || !phone || !email)
 	{
-		document.getElementById("contactEditResult").innerHTML = "One fields required";
+		document.getElementById("contactEditResult").innerHTML = "One field required";
+		setTimeout(function() {
+			document.getElementById("contactSearchResult").innerHTML = "";
+		}, 3000);
 		return;
 	}
 
@@ -462,6 +477,9 @@ function editContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactEditResult").innerHTML = "Contact has been updated";
+				setTimeout(function() {
+					document.getElementById("contactSearchResult").innerHTML = "";
+				}, 3000);
 
 				document.getElementById("firstName").value = "";
 				document.getElementById("lastName").value = "";
@@ -524,6 +542,9 @@ function deleteContact(contactId)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+				setTimeout(function() {
+					document.getElementById("contactDeleteResult").innerHTML = "";
+				}, 3000);
 
 				window.currentContactId = null;
 				searchContact();

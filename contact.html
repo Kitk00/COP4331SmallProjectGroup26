@@ -9,6 +9,26 @@
 	document.addEventListener('DOMContentLoaded', function() 
 	{
 		readCookie();
+		searchContact(); // This will populate tbody when the page loads
+
+		// Modal popup logic for add-btn
+		const addBtn = document.getElementById("addButton");
+		const modal = document.getElementById("addContactModal");
+		const closeModal = document.getElementById("closeModal");
+
+		if (addBtn && modal && closeModal) {
+			addBtn.onclick = function() {
+				modal.style.display = "block";
+			};
+			closeModal.onclick = function() {
+				modal.style.display = "none";
+			};
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			};
+		}
 	}, false);
 	</script>
 	
@@ -28,12 +48,16 @@
 	<br />
 
 	<input type="text" id="searchText" placeholder="Contact To Search For"/>
-	<button type="button" id="searchContactButton" class="buttons" onclick="searchContact();"> Search Contact </button><br />
+	<button type="button" id="searchContactButton" class="buttons" onclick="searchContact();"> Search Contact </button><br /><br />
 	<span id="contactSearchResult"></span>
+	<span id="contactAddResult"></span>
+	<span id="contactEditResult"></span>
+	<span id="contactDeleteResult"></span>
 	<p id="contactList">
-	</p><br /><br />
+	</p>
 
 	<div class="tables">
+		<button id="addButton" class="add-btn">+</button>
 		<div class="table-content" id="contactTable">
 			<table id="contacts" cellpadding="0" cellspacing="0" borders="0">
 				<thead>
@@ -49,15 +73,31 @@
 			</table>
 		</div>
 	</div>
-	<input type="text" id="firstName" placeholder="First Name" /><br />
-    <input type="text" id="lastName" placeholder="Last Name" /><br />
-	<input type="text" id="phone" placeholder="Phone" /><br />
-	<input type="text" id="email" placeholder="Email"/><br />
-	<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
-	<button type="button" id="editContactButton" class="buttons" onclick="editContact();"> Edit Contact </button><br />
-	<span id="contactAddResult"></span>
-	<span id="contactEditResult"></span>
-	<span id="contactDeleteResult"></span>
+	
+</div>
+
+<div id="addContactModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>Add Contact</h2>
+        <!-- You can add form fields here if needed -->
+        <input type="text" id="firstName" placeholder="First Name" /><br />
+		<input type="text" id="lastName" placeholder="Last Name" /><br />
+		<input type="text" id="phone" placeholder="Phone" /><br />
+		<input type="text" id="email" placeholder="Email"/><br />
+		<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+		<button type="button" id="editContactButton" class="buttons" onclick="editContact();"> Edit Contact </button><br />
+    </div>
+</div>
+
+<div id="deleteConfirmModal" class="modal">
+    <div class="modal-content">
+        <span id="closeDeleteModal" class="close">&times;</span>
+        <h2>Delete Contact</h2>
+        <p>Are you sure you want to delete this contact?</p>
+        <button id="confirmDeleteButton" class="buttons">Yes, Delete</button>
+        <button id="cancelDeleteButton" class="buttons">Cancel</button>
+    </div>
 </div>
 
 </body>
