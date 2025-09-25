@@ -1,0 +1,21 @@
+.boat 
+{
+    position: fixed;
+    bottom: 80px;
+    left: -100px;
+    width: 250px;
+    height: 150px;
+    background-image: url('../images/boat.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    animation: sail 15s linear infinite;
+    font-size: 200px;
+}
+
+@keyframes sail
+{
+    0% {left: -100px; }
+    100% {left: calc(100% + 50px);}
+}
