@@ -27,6 +27,23 @@ body
     background-color: #FFFFFF80;
 }
 
+#signUpResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #95060a;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#signUpResult.fade-out {
+    opacity: 0;
+}
+
 .buttons
 {
     font-size: 25px;

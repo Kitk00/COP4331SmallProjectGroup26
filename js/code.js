@@ -41,6 +41,16 @@ function doLogin()
 				if( userId < 1 )
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					const resultElem = document.getElementById("loginResult");
+					resultElem.classList.remove("fade-out");
+					setTimeout(function() {
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
+					}, 3000);
+
 					return;
 				}
 		
@@ -77,11 +87,31 @@ function doSignUp()
 	if(!firstName || !lastName || !login || !password || !confirmPassword)
 	{
 		document.getElementById("signUpResult").innerHTML = "All fields required";
+		const resultElem = document.getElementById("signUpResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
+
 		return;
 	}
 
 	if(password !== confirmPassword) {
 		document.getElementById("signUpResult").innerHTML = "Passwords do not match";
+		const resultElem = document.getElementById("signUpResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
+
 		return;
 	}
 	
@@ -106,6 +136,16 @@ function doSignUp()
 				if( userId < 1 )
 				{		
 					document.getElementById("signUpResult").innerHTML = "Username Not Available";
+					const resultElem = document.getElementById("signUpResult");
+					resultElem.classList.remove("fade-out");
+					setTimeout(function() {
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
+					}, 3000);
+
 					return;
 				}
 		
