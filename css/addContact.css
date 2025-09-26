@@ -85,7 +85,7 @@ table
     width: 80%;
     margin-left: 10%;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 5px;
     font-family: 'Helvetica', sans-serif;
     background-color: #00804080;
@@ -115,13 +115,44 @@ table
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
+#logo
+{
+    margin-top: 20px;
+    width: 60%;
+    height: auto;
+}
+
+.button-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+#addContactForm
+{
+    font-size: 20px;
+    width: 50%;
+    height: 60%;
+    margin-left: 25%;
+    padding: 20px;
+    background-color: #FFFFFF80;
+    border: 2px solid #00B5E2;
+    border-radius: 15px;
+}
+
+#addContactForm input{
+    border-radius: 15px;
     text-align: center;
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 20px;
+    border: 2px solid #00B5E2;
 }
 
 #inner-title{
