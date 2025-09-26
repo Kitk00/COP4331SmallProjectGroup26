@@ -125,10 +125,31 @@ table
     background-color: #00804080;
     border: none;
 }
-
 .buttons:hover{
     background-color: #00d5124f;
     color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+.icon-btn {
+    font-size: 1.5em;
+    width: 56px;         /* Set width */
+    height: 56px;        /* Set height to match width */
+    padding: 0;          /* Remove extra padding */
+    border-radius: 8px;  /* Slightly rounded corners for a square */
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -4px;
+}
+.icon-btn:hover {
     transform: scale(1.05);
 }
 
