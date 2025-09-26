@@ -1,0 +1,29 @@
+.sidenav
+{
+    height: 100vh;
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00804090;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo
+{
+    margin-top: 20px;
+    width: 60%;
+    height: auto;
+}
+
+.button-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}

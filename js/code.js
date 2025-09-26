@@ -283,7 +283,8 @@ function addContact()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+
+	document.getElementById("addContactModal").style.display = "none";
 }
 
 function addColor()

@@ -210,12 +210,6 @@ input[type="text"],input[type="password"]{
     text-align: center;
 }
 
-#logoutButton{
-    width: 70%;
-    margin-left: 15%;
-    margin-top: 130%;
-}
-
 select{
     width: 30%;
     margin-left: 35%;
