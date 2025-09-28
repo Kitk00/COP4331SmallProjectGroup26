@@ -3,9 +3,13 @@ body
     background-color: #00B5E2;
 	background-image: url("../images/water.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
-    overflow: hidden;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
 }
+
 
 #title 
 {
@@ -16,6 +20,10 @@ body
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
     color: #008040;
+}
+
+#mainContent {
+    padding-bottom: 5vh; /* 5% of viewport height as bottom space */
 }
 
 .sidenav
@@ -61,28 +69,66 @@ body
 #contactTable
 {
     display: block;
-    height: 500px;
+    height: auto;
 }
 
-table
-{
-    width:100%;
+/* ...existing code... */
+
+/* Remove border from table, keep border-radius */
+table {
+    width: 100%;
     table-layout: fixed;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border: none; /* Remove outer border */
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);
 }
+
+/* Thicker border for outer cells, thinner for inner */
+#contacts th, #contacts td {
+    border: 1.5px solid #008040; /* Thinner inner border */
+}
+
+/* Outer border for corners and edges */
+#contacts th:first-child,
+#contacts td:first-child {
+    border-left: 3px solid #008040;
+}
+#contacts th:last-child,
+#contacts td:last-child {
+    border-right: 3px solid #008040;
+}
+#contacts tr:first-child th,
+#contacts tr:first-child td {
+    border-top: 3px solid #008040;
+}
+#contacts tr:last-child td {
+    border-bottom: 3px solid #008040;
+}
+
+/* Rounded corners for the outermost cells */
+#contacts th:first-child {
+    border-top-left-radius: 12px;
+}
+#contacts th:last-child {
+    border-top-right-radius: 12px;
+}
+#contacts tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+#contacts tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* ...existing code... */
 
 .tbl-content 
 {
     height: 300px;
     overflow-x: auto;
     margin-top: 0px;
-    border: 1px solid #008040;
-}
-
-#contacts td, #contacts th 
-{
     border: 1px solid #008040;
 }
 
@@ -346,24 +392,29 @@ select{
 
 .modal {
     display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
+    text-align: center;
+    margin: 2% auto;
     padding: 20px;
     border: 2px solid #008040;
     border-radius: 12px;
-    width: 350px;
+    width: 90vw;         /* Stretch horizontally: 90% of viewport width */
+    max-width: 1200px;   /* Prevents it from being too wide */
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
 }
 
 #addContactModal input[type="text"] {
@@ -384,4 +435,17 @@ select{
 }
 .close:hover {
     color: #95060a;
+}
+
+#resultContainer {
+    position: relative;
+    min-height: 32px;
+}
+#resultContainer span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
 }

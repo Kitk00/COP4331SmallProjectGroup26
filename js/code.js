@@ -284,6 +284,8 @@ function addContact()
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 
+	suppressSearchResultMessage = true;
+	searchContact();
 	document.getElementById("addContactModal").style.display = "none";
 }
 
@@ -394,7 +396,7 @@ function searchContact()
 					deleteButton.textContent = "Delete";
 					deleteButton.onclick = function() 
 					{
-						deleteContact(contact.ID);
+						showDeleteConfirmModal(contact.ID);
 					};
 
 					buttonsCell.appendChild(editButton);
@@ -608,4 +610,34 @@ function deleteContact(contactId)
 		document.getElementById("contactDeleteResult").innerHTML = err.message;
 	}
 	
+}
+
+// Add this function at the end of the file:
+function showDeleteConfirmModal(contactId) {
+    const modal = document.getElementById("deleteConfirmModal");
+    modal.style.display = "block";
+    // Store the contactId for deletion
+    window.contactIdToDelete = contactId;
+
+    // Set up confirm and cancel buttons
+    document.getElementById("confirmDeleteButton").onclick = function() {
+        deleteContact(window.contactIdToDelete);
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    document.getElementById("cancelDeleteButton").onclick = function() {
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    document.getElementById("closeDeleteModal").onclick = function() {
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    // Optional: close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            window.contactIdToDelete = null;
+        }
+    };
 }

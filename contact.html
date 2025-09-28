@@ -3,7 +3,8 @@
 	<title>Contacts Page</title>
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/contact.css" rel="stylesheet">
-	<link href="css/sidenav.css" rel="stylesheet">	
+	<link href="css/sidenav.css" rel="stylesheet">
+	<link href="css/addContact.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
 	<script type="text/javascript">
@@ -61,7 +62,7 @@
 <div class="sidenav">
     <img id="logo" src="images/logo.png" alt="Logo image">
     <div class="button-container">
-        <button type="button" id="aboutMe" class="buttons" onclick="window.location.href = 'https://github.com/Kitk00/COP4331SmallProjectGroup26'"> About Me</button>
+        <button type="button" id="aboutMe" class="buttons" onclick="window.location.href = 'https://github.com/Kitk00/COP4331SmallProjectGroup26'"> About Me </button>
         <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
     </div>
 </div>
@@ -69,61 +70,66 @@
 	<span id="userName"></span><br />
 </div> --->
 
-<div id="accessUIDiv">
-	<br />
+<div id="mainContent">
+	<div id="accessUIDiv">
+		<br />
 
-	<input type="text" id="searchText" placeholder="Search Contacts"/>
-	<button type="button" id="searchContactButton" class="icon-btn" onclick="searchContact();">&#128269;</button>
-	<br /><br />
-	<span id="contactSearchResult"></span>
-	<span id="contactAddResult"></span>
-	<span id="contactEditResult"></span>
-	<span id="contactDeleteResult"></span>
-	<p id="contactList">
-	</p>
+		<input type="text" id="searchText" placeholder="Search Contacts"/>
+		<button type="button" id="searchContactButton" class="icon-btn" onclick="searchContact();">&#128269;</button>
+		<br /><br />
+		<div id="resultContainer">
+			<span id="contactSearchResult"></span>
+			<span id="contactAddResult"></span>
+			<span id="contactEditResult"></span>
+			<span id="contactDeleteResult"></span>
+		</div>
+		<p id="contactList">
+		</p>
 
-	<div class="tables">
-		<button id="addButton" class="add-btn">+</button>
-		<div class="table-content" id="contactTable">
-			<table id="contacts" cellpadding="0" cellspacing="0" borders="0">
-				<thead>
-					<tr>
-						<th class="tableHeader">First&nbsp</th>
-						<th class="tableHeader">Last&nbsp</th>
-						<th class="tableHeader">Email</th>
-						<th class="tableHeader">Phone</th>
-						<th class="tableHeader buttonCells">Edit/Delete</th>
-					</tr>
-				</thead>
-				<tbody id="tbody"></tbody>
-			</table>
+		<div class="tables">
+			<button id="addButton" class="add-btn">+</button>
+			<div class="table-content" id="contactTable">
+				<table id="contacts" cellpadding="0" cellspacing="0" borders="0">
+					<thead>
+						<tr>
+							<th class="tableHeader">First&nbsp</th>
+							<th class="tableHeader">Last&nbsp</th>
+							<th class="tableHeader">Email</th>
+							<th class="tableHeader">Phone</th>
+							<th class="tableHeader buttonCells">Edit/Delete</th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	
 </div>
 
-<div id="addContactModal" class="modal">
-    <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <h2 type="text" id="title">Add Contact</h2>
-        <!-- You can add form fields here if needed -->
-        <input type="text" id="firstName" placeholder="First Name" /><br />
-		<input type="text" id="lastName" placeholder="Last Name" /><br />
-		<input type="text" id="phone" placeholder="Phone" /><br />
-		<input type="text" id="email" placeholder="Email"/><br />
-		<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
-    </div>
-</div>
+	<div id="addContactModal" class="modal">
+		<div class="modal-content">
+			<span id="closeModal" class="close">&times;</span>
+			<h2 type="text" id="title">Add Contact</h2>
+			<!-- You can add form fields here if needed -->
+			<form id="addContactForm">
+				<input type="text" id="firstName" placeholder="First Name" /><br />
+				<input type="text" id="lastName" placeholder="Last Name" /><br />
+				<input type="text" id="phone" placeholder="Phone" /><br />
+				<input type="text" id="email" placeholder="Email"/><br />
+				<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+			</form>
+		</div>
+	</div>
 
-<div id="deleteConfirmModal" class="modal">
-    <div class="modal-content">
-        <span id="closeDeleteModal" class="close">&times;</span>
-        <h2>Delete Contact</h2>
-        <p>Are you sure you want to delete this contact?</p>
-        <button id="confirmDeleteButton" class="buttons">Yes, Delete</button>
-        <button id="cancelDeleteButton" class="buttons">Cancel</button>
-    </div>
-</div>
+	<div id="deleteConfirmModal" class="modal">
+		<div class="modal-content">
+			<span id="closeDeleteModal" class="close">&times;</span>
+			<h2>Delete Contact</h2>
+			<p>Are you sure you want to delete this contact?</p>
+			<button id="confirmDeleteButton" class="buttons">Yes, Delete</button>
+			<button id="cancelDeleteButton" class="buttons">Cancel</button>
+		</div>
+	</div>
 
 </body>
 </html>
