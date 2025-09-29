@@ -28,8 +28,8 @@
 				document.querySelector("#addContactModal h2").textContent = "Add Contact";
 				document.getElementById("addContactButton").textContent = "Add Contact";
 				document.getElementById("addContactButton").onclick = addContact;
-        };
-    }
+			};
+		}
 
 		if (addBtn && modal && closeModal) {
 			addBtn.onclick = function() {
@@ -76,7 +76,7 @@
 
 		<input type="text" id="searchText" placeholder="Search Contacts"/>
 		<button type="button" id="searchContactButton" class="icon-btn" onclick="searchContact();">&#128269;</button>
-		<br /><br />
+		<br />
 		<div id="resultContainer">
 			<span id="contactSearchResult"></span>
 			<span id="contactAddResult"></span>
@@ -110,13 +110,16 @@
 		<div class="modal-content">
 			<span id="closeModal" class="close">&times;</span>
 			<h2 type="text" id="title">Add Contact</h2>
+			<span id="contactAddResult"></span>
 			<!-- You can add form fields here if needed -->
 			<form id="addContactForm">
 				<input type="text" id="firstName" placeholder="First Name" /><br />
 				<input type="text" id="lastName" placeholder="Last Name" /><br />
 				<input type="text" id="phone" placeholder="Phone" /><br />
 				<input type="text" id="email" placeholder="Email"/><br />
-				<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+				<div id="modalButtonContainer">
+					<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+				</div>
 			</form>
 		</div>
 	</div>
@@ -124,7 +127,7 @@
 	<div id="deleteConfirmModal" class="modal">
 		<div class="modal-content">
 			<span id="closeDeleteModal" class="close">&times;</span>
-			<h2>Delete Contact</h2>
+			<h2 type="text" id="title">Delete Contact</h2>
 			<p>Are you sure you want to delete this contact?</p>
 			<button id="confirmDeleteButton" class="buttons">Yes, Delete</button>
 			<button id="cancelDeleteButton" class="buttons">Cancel</button>

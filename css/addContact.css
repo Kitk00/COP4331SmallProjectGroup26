@@ -131,28 +131,26 @@ table
     width: 100%;
 }
 
-#addContactForm
-{
+#addContactForm {
     font-size: 20px;
-    width: 50%;
-    height: 60%;
-    margin-left: 25%;
-    padding: 20px;
-    background-color: #FFFFFF80;
-    border: 2px solid #00B5E2;
-    border-radius: 15px;
+    width: 96%;           /* Nearly full width of modal-content */
+    margin: 0 auto;       /* Center horizontally */
+    padding: 8px 0;       /* Small vertical padding, no horizontal */
+    background-color: transparent; /* Let modal-content background show */
+    border: none;         /* Remove border if present */
+    border-radius: 0;     /* Remove extra rounding */
 }
 
-#addContactForm input{
-    border-radius: 15px;
+#addContactForm input {
+    border-radius: 10px;
     text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    padding: 10px;
+    width: 96%;           /* Nearly full width of form */
+    margin: 6px 2%;       /* Small vertical and horizontal margin */
+    padding: 8px;
     font-family: 'Helvetica', sans-serif;
     font-size: 20px;
     border: 2px solid #00B5E2;
+    box-sizing: border-box;
 }
 
 #inner-title{
