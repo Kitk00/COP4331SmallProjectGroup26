@@ -1,4 +1,4 @@
-const urlBase = 'http://159.89.159.198/LAMPAPI';
+const urlBase = 'http://oceanview.oceanview.live/LAMPAPI';
 //const urlBase = 'http://134.209.2.58/LAMPAPI';
 // const urlBase = 'http://165.227.218.156/LAMPAPI';
 const extension = 'php';
