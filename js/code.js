@@ -1,7 +1,7 @@
 const urlBase = 'http://oceanview.oceanview.live/LAMPAPI';
 //const urlBase = 'http://134.209.2.58/LAMPAPI';
 // const urlBase = 'http://165.227.218.156/LAMPAPI';
-const urlBase = 'http://104.248.77.74/LAMPAPI';
+//const urlBase = 'http://104.248.77.74/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
