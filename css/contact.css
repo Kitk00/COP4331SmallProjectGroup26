@@ -3,8 +3,13 @@ body
     background-color: #00B5E2;
 	background-image: url("../images/water.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
 }
+
 
 #title 
 {
@@ -15,6 +20,10 @@ body
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
     color: #008040;
+}
+
+#mainContent {
+    padding-bottom: 5vh; /* 5% of viewport height as bottom space */
 }
 
 .sidenav
@@ -30,36 +39,97 @@ body
     flex-direction: column;
 }
 
-.tables
-{
+.tables {
     align-self: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.add-btn {
+    align-self: flex-end; /* This will push the button to the right */
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: #008040;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px 10px 0;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    transform: scale(1.05);
 }
 
 #contactTable
 {
     display: block;
-    height: 500px;
+    height: auto;
 }
 
-table
-{
-    width:100%;
+/* ...existing code... */
+
+/* Remove border from table, keep border-radius */
+table {
+    width: 100%;
     table-layout: fixed;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border: none; /* Remove outer border */
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Ubuntu', sans-serif;
 }
+
+/* Thicker border for outer cells, thinner for inner */
+#contacts th, #contacts td {
+    border: 1.5px solid #008040; /* Thinner inner border */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Outer border for corners and edges */
+#contacts th:first-child,
+#contacts td:first-child {
+    border-left: 3px solid #008040;
+}
+#contacts th:last-child,
+#contacts td:last-child {
+    border-right: 3px solid #008040;
+}
+#contacts tr:first-child th,
+#contacts tr:first-child td {
+    border-top: 3px solid #008040;
+}
+#contacts tr:last-child td {
+    border-bottom: 3px solid #008040;
+}
+
+/* Rounded corners for the outermost cells */
+#contacts th:first-child {
+    border-top-left-radius: 12px;
+}
+#contacts th:last-child {
+    border-top-right-radius: 12px;
+}
+#contacts tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+#contacts tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* ...existing code... */
 
 .tbl-content 
 {
     height: 300px;
     overflow-x: auto;
     margin-top: 0px;
-    border: 1px solid #008040;
-}
-
-#contacts td, #contacts th 
-{
     border: 1px solid #008040;
 }
 
@@ -82,13 +152,17 @@ table
     background-color: #b2b2b2;
 }
 
-#accessUIDiv
-{
+#accessUIDiv {
     font-size: 30px;
-    width: 70%;
-    margin-left: 17.5%;
-    padding: 25px;
     background-color: #00B5E280;
+    border-radius: 16px;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    min-width: 350px; /* Optional: set a minimum width */
+    margin: 40px auto 0 0; /* Center horizontally if needed */
+    padding: 12px 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
 .buttons
@@ -104,10 +178,31 @@ table
     background-color: #00804080;
     border: none;
 }
-
 .buttons:hover{
     background-color: #00d5124f;
     color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+.icon-btn {
+    font-size: 1.5em;
+    width: 56px;         /* Set width */
+    height: 56px;        /* Set height to match width */
+    padding: 0;          /* Remove extra padding */
+    border-radius: 8px;  /* Slightly rounded corners for a square */
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -4px;
+}
+.icon-btn:hover {
     transform: scale(1.05);
 }
 
@@ -129,12 +224,14 @@ table
 }
 
 input[type="text"],input[type="password"]{
-    border-radius: 25px;
+    border-radius: 15px;
     text-align: center;
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-family: 'Helvetica', sans-serif;
+    border: 2px solid #00B5E2;
 }
 
 #inner-title{
@@ -166,34 +263,12 @@ input[type="text"],input[type="password"]{
     text-align: center;
 }
 
-#logoutButton{
-    width: 70%;
-    margin-left: 15%;
-    margin-top: 130%;
-}
-
 select{
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
     font-family: 'Ubuntu', sans-serif;
-}
-
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
 }
 
 #contacts .contactButton {
@@ -236,4 +311,153 @@ select{
     width: 140px;
     text-align: center;
     vertical-align: middle;
+}
+
+#contactSearchResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactSearchResult.fade-out {
+    opacity: 0;
+}
+
+#contactAddResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactAddResult.fade-out {
+    opacity: 0;
+}
+
+#contactDeleteResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactDeleteResult.fade-out {
+    opacity: 0;
+}
+
+#contactEditResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #000000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#contactEditResult.fade-out {
+    opacity: 0;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    text-align: center;
+    margin: 2% auto;
+    padding: 20px;
+    border: 2px solid #008040;
+    border-radius: 12px;
+    width: 50vw;        /* Stretch horizontally: 50% of viewport width */
+    max-width: 1200px;   /* Prevents it from being too wide */
+    box-shadow: 0 12px 12px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+#addContactModal input[type="text"] {
+    display: block;
+    margin: 8px auto;
+    width: 80%;
+    font-size: 1em;
+    border-radius: 6px;
+    padding: 4px;
+}
+#addContactModal .buttons {
+    width: 80%;
+    margin: 8px auto;    /* Center horizontally, match input spacing */
+    display: block;
+}
+
+#modalButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.close {
+    color: #008040;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover {
+    color: #95060a;
+}
+
+#resultContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    min-height: 2em;      /* Reserve space for one line of text */
+    height: 2.2em;        /* Or set to the max height you expect */
+    pointer-events: none; /* Prevent interaction if needed */
+    overflow: hidden;
+}
+#resultContainer span {
+    display: block;
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+    position: static; /* Remove absolute positioning */
 }

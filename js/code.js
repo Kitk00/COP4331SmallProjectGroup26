@@ -1,11 +1,14 @@
 const urlBase = 'http://oceanview.oceanview.live/LAMPAPI';
 //const urlBase = 'http://134.209.2.58/LAMPAPI';
 // const urlBase = 'http://165.227.218.156/LAMPAPI';
+const urlBase = 'http://104.248.77.74/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let isInitialLoad = true;
+let suppressSearchResultMessage = false;
 
 function doLogin()
 {
@@ -40,6 +43,16 @@ function doLogin()
 				if( userId < 1 )
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					const resultElem = document.getElementById("loginResult");
+					resultElem.classList.remove("fade-out");
+					setTimeout(function() {
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
+					}, 3000);
+
 					return;
 				}
 		
@@ -68,17 +81,43 @@ function doSignUp()
 	let lastName = document.getElementById("signUpLastName").value;
 	let login = document.getElementById("signUpName").value;
 	let password = document.getElementById("signUpPassword").value;
+	let confirmPassword = document.getElementById("confirmPassword").value;
 //	var hash = md5( password );
 	
 	document.getElementById("signUpResult").innerHTML = "";
 
-	if(!firstName || !lastName || !login || !password)
+	if(!firstName || !lastName || !login || !password || !confirmPassword)
 	{
 		document.getElementById("signUpResult").innerHTML = "All fields required";
+		const resultElem = document.getElementById("signUpResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
+
+		return;
+	}
+
+	if(password !== confirmPassword) {
+		document.getElementById("signUpResult").innerHTML = "Passwords do not match";
+		const resultElem = document.getElementById("signUpResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
+
 		return;
 	}
 	
-	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
+	let tmp = {firstName:firstName,lastName:lastName,login:login,password:password,confirmPassword:confirmPassword};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -99,6 +138,16 @@ function doSignUp()
 				if( userId < 1 )
 				{		
 					document.getElementById("signUpResult").innerHTML = "Username Not Available";
+					const resultElem = document.getElementById("signUpResult");
+					resultElem.classList.remove("fade-out");
+					setTimeout(function() {
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
+					}, 3000);
+
 					return;
 				}
 		
@@ -183,6 +232,15 @@ function addContact()
 	if(!firstName || !lastName || !phone || !email)
 	{
 		document.getElementById("contactAddResult").innerHTML = "All fields required";
+		const resultElem = document.getElementById("contactAddResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
 		return;
 	}
 
@@ -203,6 +261,15 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				const resultElem = document.getElementById("contactAddResult");
+				resultElem.classList.remove("fade-out");
+				setTimeout(function() {
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
+				}, 3000);
 
 				document.getElementById("firstName").value = "";
 				document.getElementById("lastName").value = "";
@@ -216,7 +283,10 @@ function addContact()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+
+	suppressSearchResultMessage = true;
+	searchContact();
+	document.getElementById("addContactModal").style.display = "none";
 }
 
 function addColor()
@@ -272,9 +342,23 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
+				if(!isInitialLoad && !suppressSearchResultMessage) {
+					document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+					const resultElem = document.getElementById("contactSearchResult");
+					resultElem.classList.remove("fade-out");
+					setTimeout(function() {
+						resultElem.classList.add("fade-out");
+						setTimeout(function() {
+							resultElem.innerHTML = "";
+							resultElem.classList.remove("fade-out");
+						}, 500);
+					}, 3000);
+				}
+				suppressSearchResultMessage = false;
+				isInitialLoad = false;
+
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
 					let contact = jsonObject.results[i];
@@ -312,7 +396,7 @@ function searchContact()
 					deleteButton.textContent = "Delete";
 					deleteButton.onclick = function() 
 					{
-						deleteContact(contact.ID);
+						showDeleteConfirmModal(contact.ID);
 					};
 
 					buttonsCell.appendChild(editButton);
@@ -387,7 +471,16 @@ function editContact()
 
 	if(!firstName || !lastName || !phone || !email)
 	{
-		document.getElementById("contactEditResult").innerHTML = "One fields required";
+		document.getElementById("contactEditResult").innerHTML = "One field required";
+		const resultElem = document.getElementById("contactEditResult");
+		resultElem.classList.remove("fade-out");
+		setTimeout(function() {
+			resultElem.classList.add("fade-out");
+			setTimeout(function() {
+				resultElem.innerHTML = "";
+				resultElem.classList.remove("fade-out");
+			}, 500);
+		}, 3000);
 		return;
 	}
 
@@ -413,12 +506,23 @@ function editContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactEditResult").innerHTML = "Contact has been updated";
+				const resultElem = document.getElementById("contactEditResult");
+				resultElem.classList.remove("fade-out");
+				setTimeout(function() {
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
+				}, 3000);
 
 				document.getElementById("firstName").value = "";
 				document.getElementById("lastName").value = "";
 				document.getElementById("phone").value = "";
 				document.getElementById("email").value = "";
 				window.currentContactId = null;
+				document.getElementById("addContactModal").style.display = "none";
+				suppressSearchResultMessage = true;
 				searchContact();
 			}
 		};
@@ -433,16 +537,25 @@ function editContact()
 
 function selectContact(firstName, lastName, phone, email, contactId)
 {
-	document.getElementById("contactEditResult").innerHTML = "";
-	document.getElementById("contactDeleteResult").innerHTML = "";
-	document.getElementById("contactAddResult").innerHTML = "";
-	
-	document.getElementById("firstName").value = firstName;
-	document.getElementById("lastName").value = lastName;
-	document.getElementById("phone").value = phone;
-	document.getElementById("email").value = email;	
+    // Show the modal
+    document.getElementById("addContactModal").style.display = "block";
 
-	window.currentContactId = contactId;
+    // Pre-fill the fields
+    document.getElementById("firstName").value = firstName;
+    document.getElementById("lastName").value = lastName;
+    document.getElementById("phone").value = phone;
+    document.getElementById("email").value = email;
+
+    // Optionally, change modal title and button text for editing
+    document.querySelector("#addContactModal h2").textContent = "Edit Contact";
+    document.getElementById("addContactButton").textContent = "Save Changes";
+
+	window.currentContactId = contactId; // Store for editing
+
+    // Store contactId for editing (you may need to handle this in your editContact logic)
+    document.getElementById("addContactButton").onclick = function() {
+        editContact(contactId);
+    };
 }
 
 function deleteContact(contactId)
@@ -475,8 +588,18 @@ function deleteContact(contactId)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+				const resultElem = document.getElementById("contactDeleteResult");
+				resultElem.classList.remove("fade-out");
+				setTimeout(function() {
+					resultElem.classList.add("fade-out");
+					setTimeout(function() {
+						resultElem.innerHTML = "";
+						resultElem.classList.remove("fade-out");
+					}, 500);
+				}, 3000);
 
 				window.currentContactId = null;
+				suppressSearchResultMessage = true;
 				searchContact();
 			}
 		};
@@ -487,4 +610,34 @@ function deleteContact(contactId)
 		document.getElementById("contactDeleteResult").innerHTML = err.message;
 	}
 	
+}
+
+// Add this function at the end of the file:
+function showDeleteConfirmModal(contactId) {
+    const modal = document.getElementById("deleteConfirmModal");
+    modal.style.display = "block";
+    // Store the contactId for deletion
+    window.contactIdToDelete = contactId;
+
+    // Set up confirm and cancel buttons
+    document.getElementById("confirmDeleteButton").onclick = function() {
+        deleteContact(window.contactIdToDelete);
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    document.getElementById("cancelDeleteButton").onclick = function() {
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    document.getElementById("closeDeleteModal").onclick = function() {
+        modal.style.display = "none";
+        window.contactIdToDelete = null;
+    };
+    // Optional: close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            window.contactIdToDelete = null;
+        }
+    };
 }

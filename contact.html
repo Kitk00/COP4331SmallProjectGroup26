@@ -2,13 +2,55 @@
 <head>
 	<title>Contacts Page</title>
 	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/contact.css" rel="stylesheet">	
+    <link href="css/contact.css" rel="stylesheet">
+	<link href="css/sidenav.css" rel="stylesheet">
+	<link href="css/addContact.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
 	<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() 
 	{
 		readCookie();
+		searchContact(); // This will populate tbody when the page loads
+
+		// Modal popup logic for add-btn
+		const addBtn = document.getElementById("addButton");
+		const modal = document.getElementById("addContactModal");
+		const closeModal = document.getElementById("closeModal");
+
+		if (addBtn) {
+			addBtn.onclick = function() {
+				document.getElementById("addContactModal").style.display = "block";
+				document.getElementById("firstName").value = "";
+				document.getElementById("lastName").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("email").value = "";
+				document.querySelector("#addContactModal h2").textContent = "Add Contact";
+				document.getElementById("addContactButton").textContent = "Add Contact";
+				document.getElementById("addContactButton").onclick = addContact;
+			};
+		}
+
+		if (addBtn && modal && closeModal) {
+			addBtn.onclick = function() {
+				modal.style.display = "block";
+			};
+			closeModal.onclick = function() {
+				modal.style.display = "none";
+				document.getElementById("firstName").value = "";
+				document.getElementById("lastName").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("email").value = "";
+				document.querySelector("#addContactModal h2").textContent = "Add Contact";
+				document.getElementById("addContactButton").textContent = "Add Contact";
+				document.getElementById("addContactButton").onclick = addContact;
+			};
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			};
+		}
 	}, false);
 	</script>
 	
@@ -18,48 +60,79 @@
 <h1 id="title">Add or Search for a Contact!</h1>
 
 <div class="sidenav">
-	<button type="button" id="aboutMe" class="buttons" onclick="window.location.href = 'https://github.com/Kitk00/COP4331SmallProjectGroup26'"> About Me</button>
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+    <img id="logo" src="images/logo.png" alt="Logo image">
+    <div class="button-container">
+        <button type="button" id="aboutMe" class="buttons" onclick="window.location.href = 'https://github.com/Kitk00/COP4331SmallProjectGroup26'"> About Me </button>
+        <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+    </div>
 </div>
 <!-- <div id="loggedInDiv">
 	<span id="userName"></span><br />
 </div> --->
 
-<div id="accessUIDiv">
-	<br />
+<div id="mainContent">
+	<div id="accessUIDiv">
+		<br />
 
-	<input type="text" id="searchText" placeholder="Contact To Search For"/>
-	<button type="button" id="searchContactButton" class="buttons" onclick="searchContact();"> Search Contact </button><br />
-	<span id="contactSearchResult"></span>
-	<p id="contactList">
-	</p><br /><br />
+		<input type="text" id="searchText" placeholder="Search Contacts"/>
+		<button type="button" id="searchContactButton" class="icon-btn" onclick="searchContact();">&#128269;</button>
+		<br />
+		<div id="resultContainer">
+			<span id="contactSearchResult"></span>
+			<span id="contactAddResult"></span>
+			<span id="contactEditResult"></span>
+			<span id="contactDeleteResult"></span>
+		</div>
+		<p id="contactList">
+		</p>
 
-	<div class="tables">
-		<div class="table-content" id="contactTable">
-			<table id="contacts" cellpadding="0" cellspacing="0" borders="0">
-				<thead>
-					<tr>
-						<th class="tableHeader">First&nbsp</th>
-						<th class="tableHeader">Last&nbsp</th>
-						<th class="tableHeader">Email</th>
-						<th class="tableHeader">Phone</th>
-						<th class="tableHeader buttonCells">Edit/Delete</th>
-					</tr>
-				</thead>
-				<tbody id="tbody"></tbody>
-			</table>
+		<div class="tables">
+			<button id="addButton" class="add-btn">+</button>
+			<div class="table-content" id="contactTable">
+				<table id="contacts" cellpadding="0" cellspacing="0" borders="0">
+					<thead>
+						<tr>
+							<th class="tableHeader">First&nbsp</th>
+							<th class="tableHeader">Last&nbsp</th>
+							<th class="tableHeader">Email</th>
+							<th class="tableHeader">Phone</th>
+							<th class="tableHeader buttonCells">Edit/Delete</th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	<input type="text" id="firstName" placeholder="First Name" /><br />
-    <input type="text" id="lastName" placeholder="Last Name" /><br />
-	<input type="text" id="phone" placeholder="Phone" /><br />
-	<input type="text" id="email" placeholder="Email"/><br />
-	<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
-	<button type="button" id="editContactButton" class="buttons" onclick="editContact();"> Edit Contact </button><br />
-	<span id="contactAddResult"></span>
-	<span id="contactEditResult"></span>
-	<span id="contactDeleteResult"></span>
 </div>
+
+	<div id="addContactModal" class="modal">
+		<div class="modal-content">
+			<span id="closeModal" class="close">&times;</span>
+			<h2 type="text" id="title">Add Contact</h2>
+			<span id="contactAddResult"></span>
+			<!-- You can add form fields here if needed -->
+			<form id="addContactForm">
+				<input type="text" id="firstName" placeholder="First Name" /><br />
+				<input type="text" id="lastName" placeholder="Last Name" /><br />
+				<input type="text" id="phone" placeholder="Phone" /><br />
+				<input type="text" id="email" placeholder="Email"/><br />
+				<div id="modalButtonContainer">
+					<button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="deleteConfirmModal" class="modal">
+		<div class="modal-content">
+			<span id="closeDeleteModal" class="close">&times;</span>
+			<h2 type="text" id="title">Delete Contact</h2>
+			<p>Are you sure you want to delete this contact?</p>
+			<button id="confirmDeleteButton" class="buttons">Yes, Delete</button>
+			<button id="cancelDeleteButton" class="buttons">Cancel</button>
+		</div>
+	</div>
 
 </body>
 </html>

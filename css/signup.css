@@ -21,10 +21,27 @@ body
 {
     font-size: 30px;
     width: 30%;
-    height: 57%;
-    margin-left: 30%;
+    height: 70%;
+    margin: 0 auto;
     padding: 50px;
     background-color: #FFFFFF80;
+}
+
+#signUpResult {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Helvetica', sans-serif;
+    color: #95060a;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#signUpResult.fade-out {
+    opacity: 0;
 }
 
 .buttons
@@ -66,6 +83,12 @@ body
 }
 
 #signUpPassword
+{
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+#confirmPassword
 {
     font-size: 20px;
     font-family: 'Helvetica', sans-serif;

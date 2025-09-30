@@ -1,0 +1,259 @@
+body 
+{
+    background-color: #00B5E2;
+	background-image: url("../images/water.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#title 
+{
+    font-size: 40px;
+    width: 100%;
+    margin-top: 2%;
+    margin-right: 10%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #008040;
+}
+
+.tables
+{
+    align-self: center;
+}
+
+#contactTable
+{
+    display: block;
+    height: 500px;
+}
+
+table
+{
+    width:100%;
+    table-layout: fixed;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tbl-content 
+{
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid #008040;
+}
+
+#contacts td, #contacts th 
+{
+    border: 1px solid #008040;
+}
+
+#loginDiv
+{
+    font-size: 30px;
+    width: 30%;
+    height: 50%;
+    margin-left: 30%;
+    padding: 50px;
+    background-color: #00B5E2;
+}
+
+#loggedInDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
+}
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 17.5%;
+    padding: 25px;
+    background-color: #00B5E280;
+}
+
+.buttons
+{
+    font-size: 25px;
+    border-radius: 15px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-family: 'Helvetica', sans-serif;
+    background-color: #00804080;
+    border: none;
+}
+
+.buttons:hover{
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+#loginName
+{
+	font-size: 30px;
+}
+#loginPassword
+{
+	font-size: 30px;
+}
+#searchText
+{
+	font-size: 30px;
+}
+#colorText
+{
+	font-size: 30px;
+}
+
+#logo
+{
+    margin-top: 20px;
+    width: 60%;
+    height: auto;
+}
+
+.button-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+#addContactForm {
+    font-size: 20px;
+    width: 96%;           /* Nearly full width of modal-content */
+    margin: 0 auto;       /* Center horizontally */
+    padding: 8px 0;       /* Small vertical padding, no horizontal */
+    background-color: transparent; /* Let modal-content background show */
+    border: none;         /* Remove border if present */
+    border-radius: 0;     /* Remove extra rounding */
+}
+
+#addContactForm input {
+    border-radius: 10px;
+    text-align: center;
+    width: 96%;           /* Nearly full width of form */
+    margin: 6px 2%;       /* Small vertical and horizontal margin */
+    padding: 8px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 20px;
+    border: 2px solid #00B5E2;
+    box-sizing: border-box;
+}
+
+#inner-title{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#loginResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#userName{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#logoutButton{
+    width: 70%;
+    margin-left: 15%;
+}
+
+#aboutMe{
+    width: 70%;
+    margin-left: 15%;
+}
+
+select{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 0.75em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#colorSearchResult{
+    display: none;
+}
+
+#colorAddResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#contacts .contactButton {
+    font-size: 16px;
+    border-radius: 8px;
+    width: 65px;
+    margin: 2px;
+    padding: 4px 2px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #00804080;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#contacts .contactButton:hover {
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+#contacts .tableCells {
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#contacts .tableHeader {
+    padding: 8px;
+    text-align: left;
+    background-color: #008040;
+    color: white;
+    font-weight: bold;
+}
+
+#contacts .buttonCells {
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
+}
