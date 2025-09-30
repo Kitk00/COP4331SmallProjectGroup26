@@ -25,6 +25,8 @@ body
     margin: 0 auto;
     padding: 50px;
     background-color: #FFFFFF80;
+    border: 2px solid #00B5E2;
+    border-radius: 15px;
 }
 
 #signUpResult {
