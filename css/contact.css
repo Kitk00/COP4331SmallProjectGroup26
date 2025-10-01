@@ -430,6 +430,19 @@ select{
     margin-top: 10px;
 }
 
+#modalEditButtonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#modalEditButtonContainer .buttons {
+    margin-left: 0;
+}
+
 .close {
     color: #008040;
     float: right;
