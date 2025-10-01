@@ -275,6 +275,7 @@ function addContact()
 				document.getElementById("lastName").value = "";
 				document.getElementById("phone").value = "";
 				document.getElementById("email").value = "";
+				searchContact();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -285,7 +286,6 @@ function addContact()
 	}
 
 	suppressSearchResultMessage = true;
-	searchContact();
 	document.getElementById("addContactModal").style.display = "none";
 }
 
