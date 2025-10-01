@@ -66,19 +66,11 @@ body
     transform: scale(1.05);
 }
 
-#contactTable
-{
-    display: block;
-    height: auto;
-}
-
-/* ...existing code... */
-
 /* Remove border from table, keep border-radius */
 table {
     width: 100%;
     table-layout: fixed;
-    border: none; /* Remove outer border */
+    border: none;
     border-radius: 12px;
     overflow: hidden;
     border-collapse: separate;
@@ -86,10 +78,31 @@ table {
     font-family: 'Ubuntu', sans-serif;
 }
 
+#contactTable {
+    display: block;
+    height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
 /* Thicker border for outer cells, thinner for inner */
 #contacts th, #contacts td {
-    border: 1.5px solid #008040; /* Thinner inner border */
+    border: 1.5px solid #008040;
     font-family: 'Ubuntu', sans-serif;
+}
+
+/* Header background */
+#contacts .tableHeader {
+    background-color: #008040;
+}
+
+/* Alternating row colors - Excel style */
+#contacts tbody tr:nth-child(even) {
+    background-color: #e8f5e9;
+}
+
+#contacts tbody tr:nth-child(odd) {
+    background-color: #ffffff;
 }
 
 /* Outer border for corners and edges */
@@ -101,29 +114,26 @@ table {
 #contacts td:last-child {
     border-right: 3px solid #008040;
 }
-#contacts tr:first-child th,
-#contacts tr:first-child td {
+#contacts thead tr:first-child th {
     border-top: 3px solid #008040;
 }
-#contacts tr:last-child td {
+#contacts tbody tr:last-child td {
     border-bottom: 3px solid #008040;
 }
 
 /* Rounded corners for the outermost cells */
-#contacts th:first-child {
-    border-top-left-radius: 12px;
+#contacts thead tr:first-child th:first-child {
+    border-top-left-radius: 11px;
 }
-#contacts th:last-child {
-    border-top-right-radius: 12px;
+#contacts thead tr:first-child th:last-child {
+    border-top-right-radius: 11px;
 }
-#contacts tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
+#contacts tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 11px;
 }
-#contacts tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
+#contacts tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 11px;
 }
-
-/* ...existing code... */
 
 .tbl-content 
 {
@@ -473,4 +483,11 @@ select{
     text-align: center;
     margin: 0 auto;
     position: static; /* Remove absolute positioning */
+}
+
+#deleteMessage 
+{
+    font-size: 24px;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
 }
